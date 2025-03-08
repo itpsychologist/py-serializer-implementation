@@ -16,6 +16,10 @@ class CarSerializer(serializers.Serializer):
         allow_null=True,
         allow_blank=True)
 
+    class Meta:
+        model = Car
+        fields = "__all__"
+
     def create(self, validated_data):
         return Car.objects.create(**validated_data)
 
