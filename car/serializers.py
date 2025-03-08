@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from django.core.validators import MinValueValidator, MaxValueValidator
 from car.models import Car
 
 
@@ -6,8 +7,8 @@ class CarSerializer(serializers.Serializer):
     manufacturer = serializers.CharField(max_length=64)
     model = serializers.CharField(max_length=64)
     horse_powers = serializers.IntegerField(
-        validators=[serializers.MinValueValidator(1),
-                    serializers.MaxValueValidator(1914)]
+        validators=[MinValueValidator(1),
+                    MaxValueValidator(1914)]
     )
     is_broken = serializers.BooleanField()
     problem_description = serializers.CharField(
